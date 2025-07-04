@@ -154,4 +154,26 @@ public class UserService {
 	    userRepository.deleteById(id);
 	    return ResponseEntity.status(HttpStatus.OK).body("User deleted successfully with id: " + id);
 	}
+	
+	public ResponseEntity<?> searchBYName(String letters) {
+		List<User> users = userDao.searchBYName("%"+letters+"%");
+		if(users.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("NO user found with letters : "+letters);
+		}
+		else {
+			return ResponseEntity.status(HttpStatus.OK).body(users);
+		}
+	}
+	//searchByEmail in single letter
+	public ResponseEntity<?> searchByEmail(String letter) {
+		List<User> users = userDao.searchByEmail("%"+letter+"%");
+		if(users.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("NO user found with letters : "+letter);
+		}
+		else {
+			return ResponseEntity.status(HttpStatus.OK).body(users);
+		}
+		
+	}
+	
 }

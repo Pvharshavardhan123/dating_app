@@ -60,12 +60,21 @@ public class UserController {
 	public ResponseEntity<?>findByAge(@PathVariable int age){
 		return userService.findByAge(age);
 	}
+	//deleteusingid
 	@DeleteMapping("/users/{id}")
 	public ResponseEntity<?> deleteUser(@PathVariable int id) {
 	    return userService.deleteUser(id);
 	}
-
-
+	//searchByname in single letter
+	@GetMapping("/users/search/name/{letters}")
+	public ResponseEntity<?> searchBYName(@PathVariable String letters){
+		return userService.searchBYName(letters);
+	}
+	//searchByEmail in single letter
+	@GetMapping("/users/search/email/{letter}")
+	public ResponseEntity<?> searchByEmail(@PathVariable String letter){
+		return userService.searchByEmail(letter);
+	}
 	
 
 	
